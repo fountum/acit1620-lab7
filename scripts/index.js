@@ -72,13 +72,12 @@ function setup() {
             if (tile.alt === getCard().alt) {
                 outputNodes[1].textContent = 'You win';
                 showResults();
+            } else if (tries > 1){
+                outputNodes[1].textContent = 'Wrong...'
+                pause();
             } else {
                 outputNodes[1].textContent = 'You lose';
-                if (tries > 1) {
-                    pause();
-                } else {
                     showResults();
-                }
             }
         })
     }
@@ -96,8 +95,8 @@ function deactivate() {
         tile.toggleAttribute('disabled', true)
         tile.style.pointer = 'normal';
     }
-    getPanel().toggleAttribute('dim', true);
-
+    getPanel().classList.toggle('dim', true);
+    console.log('lets go!')
 }
 
 function activate() {
@@ -114,7 +113,7 @@ function activate() {
         tile.toggleAttribute('disabled', false)
         tile.style.pointer = 'pointer';
     }
-    getPanel().toggleAttribute('dim', false);
+    getPanel().classList.toggle('dim', false);
     getCheckbox().checked = false;
     getNumberInput().toggleAttribute('disabled', true);
     getContinueBtn().classList.toggle('hidden', true)
